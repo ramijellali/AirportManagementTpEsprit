@@ -3,6 +3,7 @@ using AM.applicationcore.Interfaces;
 using AM.ApplicationCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AM.applicationcore.Services
 {
@@ -103,6 +104,19 @@ namespace AM.applicationcore.Services
                 .ToList();
         }
 
+        public int ProgrammedFlightNumber(DateTime startDate)
+        {
+            DateTime enddate = startDate.AddDays(7);
+            return Flights.Count
+                (flight => flight.FlightDate >= startDate && flight.FlightDate <= enddate);
+        }
+        public double DurationAverage(string destination)
+        {
+            return Flights.
+                Where(flight=>flight.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
+                .Select(flight=>flight.EstimatedDuration)
+                .Average();
+        }
 
     }
 }

@@ -42,6 +42,7 @@ ServiceFlight serviceFlight = new ServiceFlight()
     Flights = TestData.listFlights
 };
 
+Console.WriteLine(" // Get flight dates for a specific destination\r\n");
 
 // Get flight dates for a specific destination
 var flightDates = serviceFlight.GetFlightDates("Paris"); // Adjust the destination as needed
@@ -50,3 +51,12 @@ foreach (var date in flightDates)
 {
     Console.WriteLine(date);
 }
+
+Console.WriteLine(" // Get flight dates and destination for a specific plane");
+var flightdetails = serviceFlight.ShowFlightDetails(plane2);
+Console.WriteLine("Daates and destinations of the plane2");
+flightdetails.ForEach(f => Console.WriteLine(f));
+
+Console.WriteLine(" Get avg  duration for a specific destination");
+var flightduration = serviceFlight.DurationAverage("Paris");
+Console.WriteLine(flightduration+"seconds");
