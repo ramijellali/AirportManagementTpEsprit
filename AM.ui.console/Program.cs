@@ -60,3 +60,10 @@ flightdetails.ForEach(f => Console.WriteLine(f));
 Console.WriteLine(" Get avg  duration for a specific destination");
 var flightduration = serviceFlight.DurationAverage("Paris");
 Console.WriteLine(flightduration+"seconds");
+
+Console.WriteLine(" ordered via duration");
+var ordered = serviceFlight.OrderedDurationFlights();
+foreach (var flight in ordered)
+{
+    Console.WriteLine($"Destination: {flight.Destination}, Estimated Duration: {flight.EstimatedDuration}");
+}

@@ -117,6 +117,9 @@ namespace AM.applicationcore.Services
                 .Select(flight=>flight.EstimatedDuration)
                 .Average();
         }
-
+            public List<Flight> OrderedDurationFlights()
+            {
+                return Flights.OrderBy(flight=>flight.EstimatedDuration).ToList();
+            }
     }
 }
