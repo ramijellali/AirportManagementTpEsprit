@@ -1,5 +1,6 @@
 ﻿using AM.applicationcore.Domain;
 using AM.applicationcore.Interfaces;
+using AM.ApplicationCore.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -23,17 +24,24 @@ namespace AM.applicationcore.Services
             }*/
 
             // WITH THE FOREACH LOOP
-            foreach (var flight in Flights)
+            /*foreach (var flight in Flights)
             {
                 if (flight.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
                 {
                     flightDates.Add(flight.FlightDate);
                 }
-            }
-
+            }*/
+          
+                // Using LINQ to filter and select flight dates
+                return Flights
+                    .Where(flight => flight.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
+                    .Select(flight => flight.FlightDate)
+                    .ToList();
             
 
-            return flightDates;
+
+
+            
         }
         public void GetFlights(string filterType, string filterValue)
         {
@@ -87,6 +95,14 @@ namespace AM.applicationcore.Services
                 Console.WriteLine("No flights found matching the criteria.");
             }
         }
+        public List<(DateTime FlightDate, string Destination)> ShowFlightDetails(Plane plane)
+        {
+            return Flights
+                .Where(flight => flight.Plane.PlaneId == plane.PlaneId)  // Compare flight's plane ID with the given plane's ID
+                .Select(flight => (flight.FlightDate, flight.Destination)) // Select both FlightDate and Destination
+                .ToList();
+        }
+
 
     }
 }

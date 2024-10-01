@@ -42,3 +42,11 @@ ServiceFlight serviceFlight = new ServiceFlight()
     Flights = TestData.listFlights
 };
 
+
+// Get flight dates for a specific destination
+var flightDates = serviceFlight.GetFlightDates("Paris"); // Adjust the destination as needed
+Console.WriteLine("Flight Dates for Paris:");
+foreach (var date in flightDates)
+{
+    Console.WriteLine(date);
+}
