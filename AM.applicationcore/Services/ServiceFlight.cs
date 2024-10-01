@@ -12,6 +12,7 @@ namespace AM.applicationcore.Services
         public List<DateTime> GetFlightDates(string destination)
         {
             List<DateTime> flightDates = new List<DateTime>();
+            // WITH THE FOR LOOP 
 
             /*for (int i = 0; i < Flights.Count; i++)
             {
@@ -20,6 +21,8 @@ namespace AM.applicationcore.Services
                     flightDates.Add(Flights[i].FlightDate);
                 }
             }*/
+
+            // WITH THE FOREACH LOOP
             foreach (var flight in Flights)
             {
                 if (flight.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
