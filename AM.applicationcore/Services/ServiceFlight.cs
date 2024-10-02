@@ -117,9 +117,17 @@ namespace AM.applicationcore.Services
                 .Select(flight=>flight.EstimatedDuration)
                 .Average();
         }
-            public List<Flight> OrderedDurationFlights()
+        public List<Flight> OrderedDurationFlights()
             {
                 return Flights.OrderBy(flight=>flight.EstimatedDuration).ToList();
             }
+        public List<Traveller> SeniorTravellers(Flight flight)
+        {
+            return flight.Passengers
+                .OfType<Traveller>()  // Ensure we only consider Traveller objects
+                .OrderByDescending(traveller => traveller.BirthDate)  // Order by birth date (oldest first)
+                .Take(3)  // Take the top 3 oldest travellers
+                .ToList();  // Convert to list
+        }
     }
 }
